@@ -1,3 +1,7 @@
+---
+---
+---
+
 ## Hierarchical Clustering
 
 #### 1. Data Loading
@@ -11,7 +15,7 @@ book <- head(book, 100)
 ```
 
 ```{r}
-book
+head(book,5)
 ```
 
 ```{r}

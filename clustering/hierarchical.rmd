@@ -7,6 +7,10 @@ book <- read.csv('data/book_clustering.csv')
 ```
 
 ```{r}
+book <- head(book, 100)
+```
+
+```{r}
 book
 ```
 
@@ -14,10 +18,48 @@ book
 book_cluster <- book[3:7]
 ```
 
+Cosine Similarity from @Source: <https://stats.stackexchange.com/questions/31565/compute-a-cosine-dissimilarity-matrix-in-r>
+
 ```{r}
-book_cluster
+Matrix <- as.matrix(book_cluster)
 ```
 
 ```{r}
+sim <- Matrix / sqrt(rowSums(Matrix * Matrix))
+```
 
+```{r}
+sim <- sim %*% t(sim)
+```
+
+```{r}
+cos_dist<- as.dist(1 - sim)
+```
+
+```{r}
+book_cluster.label <- hclust(cos_dist, method = "complete")
+```
+
+```{r}
+#png(filename="book_dendrogram_4.png")
+plot(book_cluster.label)
+rect.hclust(book_cluster.label, k=4, border = 2:5)
+```
+
+```{r}
+png(filename="img/book_dendrogram_5.png")
+plot(book_cluster.label)
+rect.hclust(book_cluster.label, k=5, border = 2:5)
+```
+
+```{r}
+png(filename="img/book_dendrogram_6.png")
+plot(book_cluster.label)
+rect.hclust(book_cluster.label, k=6, border = 2:5)
+```
+
+```{r}
+png(filename="img/book_dendrogram_7.png")
+plot(book_cluster.label)
+rect.hclust(book_cluster.label, k=7, border = 2:5)
 ```

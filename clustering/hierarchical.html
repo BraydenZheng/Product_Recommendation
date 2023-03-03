@@ -355,8 +355,7 @@ display: none;
 <hr />
 <div id="hierarchical-clustering" class="section level2">
 <h2>Hierarchical Clustering</h2>
-<div id="data-loading" class="section level4">
-<h4>1. Data Loading</h4>
+<p>Data Loading</p>
 <pre class="r"><code>book &lt;- read.csv(&#39;data/book_clustering.csv&#39;)</code></pre>
 <pre class="r"><code>book &lt;- head(book, 100)</code></pre>
 <pre class="r"><code>head(book,5)</code></pre>
@@ -392,7 +391,6 @@ rect.hclust(book_cluster.label, k=6, border = 2:5)</code></pre>
 <pre class="r"><code>png(filename=&quot;img/book_dendrogram_7.png&quot;)
 plot(book_cluster.label)
 rect.hclust(book_cluster.label, k=7, border = 2:5)</code></pre>
-</div>
 </div>
 
 

@@ -1,0 +1,76 @@
+---
+title: "ARM"
+output: html_document
+date: "2023-03-02"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## ARM
+
+### 1. Data Loading
+
+Dataset source: <https://www.kaggle.com/datasets/mathchi/online-retail-data-set-from-ml-repository>
+
+```{r}
+#retail = read.csv('./data/retail_dataset.csv')
+```
+
+```{r}
+#retail = read.csv('./data/retail_product_4.csv')
+```
+
+```{r}
+retail <- read.transactions("./data/retail_product_4.csv", format = "basket", sep = ",", skip = 1)
+```
+
+```{r}
+retail
+```
+
+```{r}
+library(arules)
+library(arulesViz)
+```
+
+```{r}
+#summary(retail)
+```
+
+```{r}
+rule <- apriori(retail, parameter = list(support = 0.001, confidence = 0.2))
+```
+
+```{r}
+inspect(head(rule, 25))
+```
+
+```{r}
+inspect(head(sort(rule, by = "support"), 15))
+```
+
+```{r}
+inspect(head(sort(rule, by = "confidence"), 15))
+```
+
+```{r}
+inspect(head(sort(rule, by = "lift"), 15))
+```
+
+```{r}
+plot(rule)
+```
+
+```{r}
+plot(rule, method = "grouped")
+```
+
+```{r}
+
+```
+
+```{r}
+
+```

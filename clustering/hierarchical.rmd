@@ -4,7 +4,7 @@
 
 ## Hierarchical Clustering
 
-#### 1. Data Loading
+Data Loading
 
 ```{r}
 book <- read.csv('data/book_clustering.csv')

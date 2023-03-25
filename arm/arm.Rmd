@@ -15,24 +15,22 @@ knitr::opts_chunk$set(echo = TRUE)
 Dataset source: <https://www.kaggle.com/datasets/mathchi/online-retail-data-set-from-ml-repository>
 
 ```{r}
-#retail = read.csv('./data/retail_dataset.csv')
-```
-
-```{r}
-#retail = read.csv('./data/retail_product_4.csv')
-```
-
-```{r}
-retail <- read.transactions("./data/retail_product_4.csv", format = "basket", sep = ",", skip = 1)
-```
-
-```{r}
-retail
 ```
 
 ```{r}
 library(arules)
 library(arulesViz)
+```
+
+`{#retail = read.csv('./data/retail_dataset.csv')}`
+
+```{r}
+
+retail <- read.transactions("./data/retail_product_4.csv", format = "basket", sep = ",", skip = 1)
+```
+
+```{r}
+retail
 ```
 
 ```{r}
@@ -60,7 +58,37 @@ inspect(head(sort(rule, by = "lift"), 15))
 ```
 
 ```{r}
+png(filename="img/lift_15.png")
+plot(head(sort(rule, by = "lift"), 15))
+```
+
+```{r}
+png(filename="img/confidence_15.png")
+plot(head(sort(rule, by = "confidence"), 15))
+```
+
+```{r}
+png(filename="img/support_15.png")
+plot(head(sort(rule, by = "support"), 15))
+```
+
+```{r}
 plot(rule)
+```
+
+```{r}
+png(filename="img/lift_15_group.png")
+plot(head(sort(rule, by = "lift"), 15), method = "grouped")
+```
+
+```{r}
+png(filename="img/confidencek_15_group.png")
+plot(head(sort(rule, by = "confidence"), 15), method = "grouped")
+```
+
+```{r}
+png(filename="img/support_15_group.png", width = 8, height = 4, units = 'in', res = 300)
+plot(head(sort(rule, by = "support"), 15), method = "grouped")
 ```
 
 ```{r}
@@ -68,9 +96,11 @@ plot(rule, method = "grouped")
 ```
 
 ```{r}
-
+rule2 <- apriori(retail, parameter = list(support = 0.02,
+                                             confidence = 0.6))
 ```
 
 ```{r}
+plot(rule2, method="grouped")
 
 ```
